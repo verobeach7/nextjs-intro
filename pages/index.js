@@ -1,16 +1,43 @@
 import Seo from "@/components/Seo";
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 // getServerSideProps의 리턴 object에서 results를 가져와 페이지 컴포넌트의 props로 넣어줌
 export default function Home({ results }) {
+  const router = useRouter();
+  /* const onClick = (id, title) => {
+    // router.push(`/movies/${id}`);
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
+  }; */
   return (
     <div className="container">
       <Seo title="Home" />
       {results?.map((movie) => (
-        <div className="movie" key={movie.id}>
-          <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
-          <h4>{movie.original_title}</h4>
-        </div>
+        <Link
+          //   onClick={() => onClick(movie.id, movie.original_title)}
+          key={movie.id}
+          href={{
+            pathname: `/movies/${movie.id}`,
+            query: {
+              title: movie.original_title,
+            },
+          }}
+          as={`/movies/${movie.id}`}
+        >
+          {/* <div onClick={()=>onClick(movie.id)} className="movie"> */}
+          <div className="movie">
+            <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} />
+            <h4>{movie.original_title}</h4>
+          </div>
+        </Link>
       ))}
       <style jsx>{`
         .container {
