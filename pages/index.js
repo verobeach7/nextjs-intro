@@ -1,9 +1,11 @@
-import NavBar from "@/components/NavBar";
+import Seo from "@/components/Seo";
+import Head from "next/head";
 
 export default function Home() {
   return (
     <div>
-      <h1 className="active">Hi</h1>
+      <Seo title="Home" />
+      <h1>Hi</h1>
     </div>
   );
 }

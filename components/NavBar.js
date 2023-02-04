@@ -13,7 +13,6 @@ export default function NavBar() {
           About
         </span>
       </Link>
-      {/* style은 html 고유 tag */}
       <style jsx>{`
         .active {
           color: tomato;
